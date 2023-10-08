@@ -45,6 +45,20 @@ final class LocationsViewModel: ObservableObject {
         }
     }
     
+    func nextButtonPessed() {
+        guard let currentIndex = locations.firstIndex(where: { $0 == mapLocation }) else { return }
+        
+        let nextIndex = currentIndex + 1
+        guard locations.indices.contains(nextIndex) else {
+            guard let firsLocation = locations.first else { return }
+            showNextLocation(location: firsLocation)
+            return
+        }
+        
+        let nextLocation = locations[nextIndex]
+        showNextLocation(location: nextLocation)
+    }
+    
     private func upDateMapRegion(location: Location) {
         withAnimation(.easeInOut) {
             mapRegion = MKCoordinateRegion(
