@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LocationsPreviewView: View {
     
+    @EnvironmentObject private var vm: LocationsViewModel
     let location: Location
     
     var body: some View {
@@ -75,6 +76,7 @@ extension LocationsPreviewView {
     
     private var nextButton: some View {
         Button {
+            vm.nextButtonPessed()
         } label: {
             Text("Next")
                 .font(.headline)
@@ -93,4 +95,5 @@ extension LocationsPreviewView {
         )
         .padding(16)
     }
+    .environmentObject(LocationsViewModel())
 }
